@@ -26,6 +26,6 @@ def finalizarVotacao():
             
         elif opc == 'n':
             print("\nPrograma encerrado.")
-            exit()
+            return False  # Retorna False para encerrar normalmente
         else:
             print("Digite apenas 'y' ou 'n'.")

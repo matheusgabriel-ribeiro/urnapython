@@ -9,6 +9,9 @@ def criarCandidato():
     while True:
         try:
             numCandidatos = int(input("Quantos candidatos: "))
+            if numCandidatos < 2:
+                print("ERRO: É necessário pelo menos 2 candidatos.")
+                continue
             break
         except ValueError:
             print("ERROR: Só pode usar números")
@@ -76,15 +79,18 @@ def criarCandidato():
         match opc:
             case 1:
                 resultado = votacao()
-                # Se a votação retornou o comando para reiniciar, chama o cadastro de novo
                 if resultado == 'reiniciar':
-                    criarCandidato()
-                break
+                    return True  # Sinaliza para o loop principal reiniciar
+                return False  # Votação encerrou normalmente
             case 2:
-                exit()
+                return False  # Usuário escolheu sair
             case _:
                 print("ERRO: Digite um valor válido!")
                 continue
 
 if __name__ == '__main__':
-    criarCandidato()
+    # Loop principal — evita recursão e possível RecursionError
+    while True:
+        reiniciar = criarCandidato()
+        if not reiniciar:
+            break

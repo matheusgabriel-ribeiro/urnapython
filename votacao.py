@@ -50,6 +50,6 @@ def votacao():
                 reiniciar = finalizarVotacao() # Chama a apuração e verifica se vai reiniciar
                 if reiniciar:
                     return 'reiniciar'  # Retorna o sinal para recomeçar o fluxo no main
-                return
+                return None  # Encerrar normalmente
             else:
                 print("Digite apenas 'y' ou 'n'")
